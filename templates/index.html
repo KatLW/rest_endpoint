@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Sum of list of numbers</title>
-    </head>
-    <body>
-        <h1>Kathrin's website</h1>
-        <p>Computes the sum of a list of numbers!</p>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+<h1>This website returns the sum of a list of numbers</h1>
+<p>simply send a post request with body {"numbers": [1,2,...]} to /total</p>
+{% endblock %}

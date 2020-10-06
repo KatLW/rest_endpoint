@@ -1,9 +1,7 @@
-from flask import Flask, json, request, redirect, url_for, render_template
+from flask import Flask, json, request, render_template
+import json
 
 app = Flask(__name__)
-
-
-# numbers_to_add = list(range(10000001))
 
 
 @app.route('/')
@@ -14,12 +12,15 @@ def home():
         return str(e)
 
 
-@app.route('/total', methods=['POST'])
+@app.route('/total', methods=['POST', 'GET'])
 def total():
-    req_data = request.get_json()
-    nums = req_data['numbers']
-    return json.dumps({'total': sum(nums)})
+    if request.method == 'POST':
+        req_data = request.get_json()
+        nums = req_data['numbers']
+        return json.dumps({'total': sum(nums)})
+    else:
+        return render_template('total.html')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='localhost', debug=True)
